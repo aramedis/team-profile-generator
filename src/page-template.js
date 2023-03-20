@@ -80,7 +80,7 @@ const generateTeam = team => {
 }
 
 // exports function to generate entire page
-export default team => {
+function render() {team => {
 
     return `
     <!DOCTYPE html>
@@ -116,3 +116,6 @@ export default team => {
 </html>
     `;
 };
+};
+
+export default render

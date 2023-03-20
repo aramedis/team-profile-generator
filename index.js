@@ -10,9 +10,9 @@ import fs from "fs";
 
 import render from "./src/page-template.js";
 
-
+let teamArr = [];
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
-
+function init() {
     inquirer.prompt([
         {
             type: 'list',
@@ -22,13 +22,21 @@ import render from "./src/page-template.js";
         },
         {
             type: 'input',
+            name: 'name',
+            message: 'What is your Name?',
+            when: (answers) => answers.role !== "Finish"
+        },
+        {
+            type: 'input',
             name: 'id',
             message: 'What is your Employee ID?',
+            when: (answers) => answers.role !== "Finish"
         },
         {
             type: 'input',
             name: 'email',
             message: 'What is your email address?',
+            when: (answers) => answers.role !== "Finish"
         },
         {
             type: 'input',
@@ -50,9 +58,30 @@ import render from "./src/page-template.js";
         },
     ]).then((response) => {
         console.log(response);
+        switch (response.role) {
+            case "Manager":
+                teamArr.push(new Manager(response.name, response.id, response.email, response.officeNumber));
+                init();
+                break;
+            case "Engineer":
+                teamArr.push(new Engineer(response.name, response.id, response.email, response.github));
+                init();
+                break;
+            case "Intern":
+                teamArr.push(new Intern(response.name, response.id, response.email, response.school));
+                init();
+                break;
+            case "Finish":
+                console.log(teamArr);
+                break;
+        }
     });
-    function init(){
+}
 
-    }
+// function writeToFile(team) {
+//     fs.writeFile('team.html', render(teamArr), (error) =>
+//     error ? console.error(error) : console.log(`Success!`));
+// }
+
 
 init();
