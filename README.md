@@ -30,7 +30,13 @@ install inquirer and execute through node.js
   N/A
 
 ## TESTS
-  N/A
+  simple test suite containing 4 modules using Jest
+  Execute Tests with the following code:
+   * `node --experimental-vm-modules node_modules/jest/bin/jest.js`
+
+  Tests can be found in /test folder
+  tests check the classes for each employee and their properties are accurate
+  ![test](./sample/test.png)
 
 ## CONTACT
   N/A
