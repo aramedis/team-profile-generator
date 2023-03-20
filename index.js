@@ -73,15 +73,17 @@ function init() {
                 break;
             case "Finish":
                 console.log(teamArr);
+                writeToFile(teamArr)
                 break;
         }
     });
 }
 
-// function writeToFile(team) {
-//     fs.writeFile('team.html', render(teamArr), (error) =>
-//     error ? console.error(error) : console.log(`Success!`));
-// }
+function writeToFile(teamArr) {
+    const htmlTemplate = render(teamArr);
+    fs.writeFile('team.html', htmlTemplate, (error) =>
+    error ? console.error(error) : console.log(`Success!`));
+}
 
 
 init();
